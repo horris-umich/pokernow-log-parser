@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+- Resolve a license conflict: the `LICENSE` file was GNU AGPL-3.0 while the
+  README and packaging metadata declared MIT. The project is now MIT
+  throughout, matching its intent as a permissively reusable library.
+
 ## [0.2.0.dev0] - in development
 
 ### Added
