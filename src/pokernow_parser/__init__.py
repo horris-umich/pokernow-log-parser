@@ -30,9 +30,10 @@ from .parser import (
     parse_file,
     parse_string,
 )
+from .positions import assign_positions
 from .summary import PlayerStats, SessionSummary, summarize
 
-__version__ = "0.1.0"
+__version__ = "0.2.0.dev0"
 
 __all__ = [
     "Action",
@@ -47,6 +48,7 @@ __all__ = [
     "Seat",
     "SessionSummary",
     "Street",
+    "assign_positions",
     "parse_cards",
     "parse_file",
     "parse_string",

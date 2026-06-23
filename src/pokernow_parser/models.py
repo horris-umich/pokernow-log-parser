@@ -85,7 +85,7 @@ class Seat:
 
     seat: int
     player: str
-    stack: float
+    stack: float = 0.0
 
 
 @dataclass
@@ -148,6 +148,9 @@ class Hand:
     ending_street: Street = Street.PREFLOP
     went_to_showdown: bool = False
 
+    # Derived: table position label per player (e.g. "BTN", "SB", "UTG+1").
+    positions: Dict[str, str] = field(default_factory=dict)
+
     # Derived: net chip result per player for this hand (negative = loss).
     net_results: Dict[str, float] = field(default_factory=dict)
 
@@ -155,6 +158,10 @@ class Hand:
     def players(self) -> List[str]:
         """Identifiers of every player dealt into the hand (seat order)."""
         return [s.player for s in self.seats]
+
+    def position_of(self, player: str) -> Optional[str]:
+        """Return the table position label for ``player`` (or ``None``)."""
+        return self.positions.get(player)
 
     def voluntary_players(self) -> set:
         """Players who called, bet or raised at any point in the hand."""

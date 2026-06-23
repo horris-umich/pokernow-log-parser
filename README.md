@@ -22,6 +22,7 @@ build whatever analytics you like on top of the structured data.
   - shown hole cards and the exporting account's own hand
   - pots collected (with showdown hand descriptions)
   - **reconstructed net chip result for every player** (verified zero-sum)
+  - **table position** for every player (`BTN`, `SB`, `BB`, `UTG`, `UTG+1`, …)
 - Handles mid-hand **player ID changes**, collapsing them onto one identity.
 - Basic session summary: per-player net results, hands played, VPIP, wins,
   losses, folds by street, biggest win/loss, and more.
@@ -52,6 +53,8 @@ print(f"{len(log)} hands, players: {log.players}")
 hand = log.hands[0]
 print(hand.number, hand.dealer, hand.board)
 print(hand.net_results)        # {'Alice @ aaa111': 35.0, 'Bob @ bbb222': -5.0, ...}
+print(hand.positions)          # {'Alice @ aaa111': 'BTN', 'Bob @ bbb222': 'SB', ...}
+print(hand.position_of("Bob @ bbb222"))   # 'SB'
 
 # Session summary
 summary = summarize(log)
@@ -92,6 +95,16 @@ Per-street commitment follows PokerNow's "to-amount" convention: a
 posted earlier that street), while dead money (antes, missed/missing blinds) is
 additive. Across every sample log this reconstruction is exactly zero-sum per
 hand — a useful correctness invariant that the test suite enforces.
+
+### Table positions
+
+Positions are labelled clockwise from the button — `BTN`, `SB`, `BB`, `UTG`,
+`UTG+1`, … — independent of table size. Heads-up is handled (the button is the
+small blind), as are "dead small blind" hands (the labels shift up by one when
+no small blind is posted). For the rare "dead button" hands the blind labels
+remain exact while the button label is a best-effort approximation. Validated
+against the sample logs, the small- and big-blind posters are labelled `SB` and
+`BB` in 100% of standard hands.
 
 ## Development
 

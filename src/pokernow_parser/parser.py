@@ -30,6 +30,7 @@ from .models import (
     Seat,
     Street,
 )
+from .positions import assign_positions
 
 # Columns expected in a PokerNow CSV export.
 _ENTRY_COL = "entry"
@@ -364,6 +365,23 @@ class PokerNowParser:
 
         # Normalise -0.0 to 0.0 and drop nothing; keep all involved players.
         hand.net_results = {p: (v + 0.0) for p, v in net.items()}
+
+        hand.positions = assign_positions(
+            hand.seats,
+            hand.dealer,
+            small_blind_player=self._blind_poster(
+                hand, ActionType.SMALL_BLIND
+            ),
+            big_blind_player=self._blind_poster(hand, ActionType.BIG_BLIND),
+        )
+
+    @staticmethod
+    def _blind_poster(hand: Hand, action_type: ActionType) -> Optional[str]:
+        """Return the player who posted the given blind, if any."""
+        for action in hand.actions:
+            if action.action is action_type:
+                return action.player
+        return None
 
 
 def parse_file(path: str, encoding: str = "utf-8") -> GameLog:
