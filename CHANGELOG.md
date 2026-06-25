@@ -7,12 +7,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-### Fixed
-- Resolve a license conflict: the `LICENSE` file was GNU AGPL-3.0 while the
-  README and packaging metadata declared MIT. The project is now MIT
-  throughout, matching its intent as a permissively reusable library.
+## [0.2.0] - 2026-06-25
 
-## [0.2.0.dev0] - in development
+First release published to PyPI.
 
 ### Added
 - Table-position assignment for each hand (`Hand.positions` and
@@ -23,6 +20,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 - `Seat.stack` now defaults to `0.0`.
+- Modernised packaging metadata to PEP 639 (`license = "MIT"` /
+  `license-files`) so the distribution passes `twine check`.
+
+### Fixed
+- Resolved a license conflict: the `LICENSE` file was GNU AGPL-3.0 while the
+  README and packaging metadata declared MIT. The project is now MIT
+  throughout, matching its intent as a permissively reusable library.
 
 ## [0.1.0] - 2026-06-23
 
@@ -34,6 +38,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `summarize` for basic per-player and session statistics.
 - Test suite with a fully sanitized sample log.
 
-[Unreleased]: https://github.com/horris-umich/pokernow-log-parser/compare/v0.2.0.dev0...HEAD
-[0.2.0.dev0]: https://github.com/horris-umich/pokernow-log-parser/compare/v0.1.0...v0.2.0.dev0
+[Unreleased]: https://github.com/horris-umich/pokernow-log-parser/compare/v0.2.0...HEAD
+[0.2.0]: https://github.com/horris-umich/pokernow-log-parser/compare/v0.1.0...v0.2.0
 [0.1.0]: https://github.com/horris-umich/pokernow-log-parser/releases/tag/v0.1.0

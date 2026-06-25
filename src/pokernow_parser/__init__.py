@@ -33,7 +33,7 @@ from .parser import (
 from .positions import assign_positions
 from .summary import PlayerStats, SessionSummary, summarize
 
-__version__ = "0.2.0.dev0"
+__version__ = "0.2.0"
 
 __all__ = [
     "Action",
