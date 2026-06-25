@@ -34,6 +34,12 @@ build whatever analytics you like on top of the structured data.
 pip install pokernow-log-parser
 ```
 
+Install the latest unreleased code straight from GitHub:
+
+```bash
+pip install "git+https://github.com/horris-umich/pokernow-log-parser.git"
+```
+
 Or, from a checkout of this repository:
 
 ```bash
@@ -116,6 +122,17 @@ ruff check src tests   # lint
 
 The tests run against a small, fully **sanitized** sample log
 (`tests/data/sample_session.csv`) containing only fictional names and IDs.
+
+### Releasing
+
+Releases are published to PyPI automatically via GitHub Actions using
+[Trusted Publishing](https://docs.pypi.org/trusted-publishers/) (OIDC — no
+tokens). To cut a release:
+
+1. Bump `version` in `pyproject.toml` and `__version__` in
+   `src/pokernow_parser/__init__.py`, and update `CHANGELOG.md`.
+2. Create a GitHub Release with a tag like `v0.2.0`.
+3. The `Publish to PyPI` workflow runs the tests, builds, and uploads.
 
 ## License
 
