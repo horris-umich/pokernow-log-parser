@@ -8,6 +8,11 @@ text log into hands, actions, boards, shown cards, and per-player net results.
 It deliberately does **not** do any plotting or advanced analysis, so you can
 build whatever analytics you like on top of the structured data.
 
+> **Don't want to write code?** [Master Poker](https://masterpokerapp.com) uses the
+> same parsing approach. Paste a PokerNow game link or upload your log, and you get
+> real stats in your browser: VPIP, 3-bet, win-rate and tilt. You can also host your next home game there: play chips only,
+> and guests join with a link, no signup.
+
 ## Features
 
 - Parses the full PokerNow CSV export format (the `entry`/`at`/`order` columns).
